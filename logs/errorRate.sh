@@ -1,1 +1,0 @@
-httpCodes=$(grep Status ./

@@ -1,5 +1,22 @@
 <configuration>
-    
+    <!-- appenders are how you tell logback where you want to send your logs -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are how you tell logback how to format your logs -->
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <!-- the file tags tells logback where we want our log file to be saved -->
+        <file>logs/staticLogs.log</file>
+        <!-- the append tag tells Logback whether to append the file or create a new one each time the app starts -->
+        <append>true</append>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg %n</pattern>
+        </encoder>
+    </appender>
+
     <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>logs/rollingFile.log</file>
         <append>true</append>
@@ -16,7 +33,9 @@
         </encoder>
     </appender>
 
-    <root level="TRACE">
+    <!-- root tells logback what your default log settings should be if you don't specify any -->
+    <root level="INFO">
+        <!-- can set multiple appender references -->
         <appender-ref ref="ROLLING"/>
     </root>
 
