@@ -1,17 +1,17 @@
 #Latency
 httpLatencies=$(grep Response ./rollingFile.log | cut -f 6 -d ' ')
-totalLatency=0
+latenciesTotal=0
 numOfEntry=0
  
 for num in $httpLatencies
 do
-	totalLatency=$(awk "BEGIN {print $totalLatency + $num; exist}")
+	latencyTotal=$(awk "BEGIN {print $latencyTotal + $num; exist}")
 	((numOfEntry++))
 done
 
 
 
-avgLatency=$(awk "BEGIN {print $totalLatency / $numOfEntry; exist}")
+avgLatency=$(awk "BEGIN {print $latencyTotal / $numOfEntry; exist}")
 
 echo "HTTP average latency : $avgLatency ms"
 
